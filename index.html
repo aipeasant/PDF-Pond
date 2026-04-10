@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF-Pond</title>
-    <meta name="description" content="PDF-Pond: Rotate the first two pages of your PDF in an adorable summer pond setting.">
+    <title>PDF Pond</title>
+    <meta name="description" content="PDF Pond: Rotate and split your PDF files in an adorable summer pond setting.">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -20,39 +20,76 @@
     <img src="assets/cute_beaver.png" alt="Cute Beaver" class="animal beaver" id="beaver">
 
     <main class="glass-card">
-        <h1>PDF Rotator</h1>
-        <p>Give your first 2 pages a little 90-degree twist!</p>
-        
-        <div class="upload-section">
-            <input type="file" id="pdf-upload" accept="application/pdf" hidden>
-            <label for="pdf-upload" class="upload-btn" id="upload-label">
-                Upload PDF File
-            </label>
+        <h1>PDF Pond</h1>
+        <p class="subtitle">Your friendly pond for PDF tools 🐸</p>
+
+        <!-- Tool Selector Tabs -->
+        <div class="tool-tabs" id="tool-tabs">
+            <button class="tab-btn active" data-tool="rotate" id="tab-rotate">🔄 Rotate</button>
+            <button class="tab-btn" data-tool="split" id="tab-split">✂️ Split</button>
         </div>
 
-        <div id="loading" class="hidden">
-            <div class="spinner"></div>
-            <p>Processing...</p>
-        </div>
+        <!-- ===== ROTATE TOOL ===== -->
+        <div class="tool-panel active" id="panel-rotate">
+            <p class="tool-desc">Give your first 2 pages a little 90-degree twist!</p>
+            <div class="upload-section">
+                <input type="file" id="rotate-upload" accept="application/pdf" hidden>
+                <label for="rotate-upload" class="upload-btn" id="rotate-upload-label">
+                    Upload PDF to Rotate
+                </label>
+            </div>
 
-        <div id="results" class="results-section hidden">
-            <h3>Success! What's next?</h3>
-            <div class="actions">
-                <a href="#" id="download-btn" class="action-btn download">Download Local Copy</a>
-                
-                <div class="email-section">
-                    <span class="email-text">Send it later?</span>
-                    <div class="email-box">
-                        <span id="email-address">hplkg-bw@ewprints.com</span>
-                        <button id="copy-btn" class="copy-btn">Copy</button>
+            <div id="rotate-loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Rotating pages…</p>
+            </div>
+
+            <div id="rotate-results" class="results-section hidden">
+                <h3>✅ Rotated!</h3>
+                <div class="actions">
+                    <a href="#" id="rotate-download-btn" class="action-btn download">Download Rotated PDF</a>
+                    <div class="email-section">
+                        <span class="email-text">Send it later?</span>
+                        <div class="email-box">
+                            <span id="email-address">hplkg-bw@ewprints.com</span>
+                            <button id="copy-btn" class="copy-btn">Copy</button>
+                        </div>
                     </div>
+                    <button class="upload-another-btn" id="rotate-another-btn">Upload Another File</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- ===== SPLIT TOOL ===== -->
+        <div class="tool-panel" id="panel-split">
+            <p class="tool-desc">Split every page into its own PDF file!</p>
+            <div class="upload-section">
+                <input type="file" id="split-upload" accept="application/pdf" hidden>
+                <label for="split-upload" class="upload-btn" id="split-upload-label">
+                    Upload PDF to Split
+                </label>
+            </div>
+
+            <div id="split-loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Splitting pages…</p>
+            </div>
+
+            <div id="split-results" class="results-section hidden">
+                <h3>✅ Split into <span id="split-page-count">0</span> pages!</h3>
+                <div id="split-downloads" class="split-downloads-grid">
+                    <!-- dynamically filled -->
+                </div>
+                <button class="action-btn download-all-btn" id="split-download-all-btn">⬇️ Download All as ZIP</button>
+                <button class="upload-another-btn" id="split-another-btn">Upload Another File</button>
             </div>
         </div>
     </main>
 
     <!-- PDF-Lib -->
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- JSZip for zip downloads -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
