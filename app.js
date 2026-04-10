@@ -95,6 +95,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const splitPageCount = document.getElementById('split-page-count');
     const splitDownloadAllBtn = document.getElementById('split-download-all-btn');
     const splitAnotherBtn = document.getElementById('split-another-btn');
+    const splitCopyBtn = document.getElementById('split-copy-btn');
+    const splitEmailAddress = document.getElementById('split-email-address');
+
+    // Copy Email (split)
+    splitCopyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(splitEmailAddress.innerText).then(() => {
+            const originalText = splitCopyBtn.innerText;
+            splitCopyBtn.innerText = 'Copied!';
+            splitCopyBtn.style.background = '#4ade80';
+            splitCopyBtn.style.color = 'white';
+            setTimeout(() => {
+                splitCopyBtn.innerText = originalText;
+                splitCopyBtn.style.background = '';
+                splitCopyBtn.style.color = '';
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy text.');
+        });
+    });
 
     // Store generated blobs for "Download All" zip
     let splitBlobs = [];
