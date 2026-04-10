@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF-Pond</title>
+    <meta name="description" content="PDF-Pond: Rotate the first two pages of your PDF in an adorable summer pond setting.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pond-background"></div>
+    
+    <!-- Adorable Animals -->
+    <img src="assets/cute_frog.png" alt="Cute Frog" class="animal frog" id="frog">
+    <img src="assets/cute_pig.png" alt="Cute Pig" class="animal pig" id="pig">
+    <img src="assets/highland_cattle.png" alt="Highland Cattle" class="animal cattle" id="cattle">
+    <img src="assets/cute_yoshi.png" alt="Cute Yoshi" class="animal yoshi" id="yoshi">
+    <img src="assets/cute_beaver.png" alt="Cute Beaver" class="animal beaver" id="beaver">
+
+    <main class="glass-card">
+        <h1>PDF Rotator</h1>
+        <p>Give your first 2 pages a little 90-degree twist!</p>
+        
+        <div class="upload-section">
+            <input type="file" id="pdf-upload" accept="application/pdf" hidden>
+            <label for="pdf-upload" class="upload-btn" id="upload-label">
+                Upload PDF File
+            </label>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+
+        <div id="results" class="results-section hidden">
+            <h3>Success! What's next?</h3>
+            <div class="actions">
+                <a href="#" id="download-btn" class="action-btn download">Download Local Copy</a>
+                
+                <div class="email-section">
+                    <span class="email-text">Send it later?</span>
+                    <div class="email-box">
+                        <span id="email-address">hplkg-bw@ewprints.com</span>
+                        <button id="copy-btn" class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PDF-Lib -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

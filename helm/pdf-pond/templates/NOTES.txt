@@ -1,0 +1,29 @@
+🐸 PDF-Pond has been deployed!
+
+{{- if eq .Values.service.type "NodePort" }}
+
+Access the app via NodePort:
+  export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo "Visit: http://$NODE_IP:{{ .Values.service.nodePort }}"
+
+{{- else if eq .Values.service.type "LoadBalancer" }}
+
+Access the app via LoadBalancer:
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+  kubectl get svc {{ include "pdf-pond.fullname" . }} -w
+
+{{- else if eq .Values.service.type "ClusterIP" }}
+
+Access the app via port-forward:
+  kubectl port-forward svc/{{ include "pdf-pond.fullname" . }} 8080:{{ .Values.service.port }}
+  echo "Visit: http://localhost:8080"
+
+{{- end }}
+
+{{- if .Values.ingress.enabled }}
+
+Ingress is enabled. Access via:
+{{- range .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .host }}
+{{- end }}
+{{- end }}

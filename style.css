@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: #2c3e50;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.pond-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/summer_pond_bg.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(1.1) contrast(1.05);
+    z-index: -2;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e6fa3;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+p {
+    font-size: 1.1rem;
+    color: #4a6572;
+    margin-bottom: 30px;
+}
+
+/* Upload Button */
+.upload-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #4ade80, #3b82f6);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Loading */
+.hidden {
+    display: none !important;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(59, 130, 246, 0.2);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Results section */
+.results-section {
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.results-section h3 {
+    margin-bottom: 20px;
+    color: #15803d;
+}
+
+.action-btn {
+    display: block;
+    padding: 12px 24px;
+    background: white;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+    border: 2px solid #3b82f6;
+}
+
+.action-btn:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.email-section {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.email-text {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.email-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    justify-content: space-between;
+}
+
+.email-box span {
+    font-family: monospace;
+    font-size: 1rem;
+    color: #334155;
+}
+
+.copy-btn {
+    background: #e2e8f0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #475569;
+    transition: background 0.2s;
+}
+
+.copy-btn:hover {
+    background: #cbd5e1;
+}
+
+/* Animals Positioning and Animations */
+.animal {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+    z-index: 5;
+    animation: bobble 4s infinite ease-in-out alternate;
+}
+
+.frog { bottom: 10%; left: 10%; animation-delay: 0s; width: 120px; }
+.pig { top: 15%; right: 15%; animation-delay: 0.5s; width: 140px; }
+.cattle { bottom: 15%; right: 5%; animation-delay: 1s; width: 180px; }
+.yoshi { top: 10%; left: 5%; animation-delay: 1.5s; }
+.beaver { bottom: 5%; left: 40%; animation-delay: 2s; width: 130px; }
+
+@keyframes bobble {
+    0% { transform: translateY(0) rotate(-2deg); }
+    100% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@media (max-width: 768px) {
+    .animal { width: 100px; }
+    .cattle { width: 130px; }
+    .frog { width: 90px; }
+}

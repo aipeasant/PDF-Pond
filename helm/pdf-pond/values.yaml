@@ -1,0 +1,50 @@
+# Default values for pdf-pond
+# Override these when installing: helm install pdf-pond ./helm/pdf-pond -f my-values.yaml
+
+replicaCount: 1
+
+image:
+  # CHANGE THIS to your GHCR path, e.g. ghcr.io/your-username/pdf-pond
+  repository: ghcr.io/aipeasant/pdf-pond
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+# If your GHCR repo is private, create a k8s secret and reference it here
+imagePullSecrets: []
+# - name: ghcr-login-secret
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: pdf-pond.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: pdf-pond-tls
+  #    hosts:
+  #      - pdf-pond.local
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
